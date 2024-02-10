@@ -1,0 +1,44 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+
+
+Create!!
+
+
+    <div class="container">
+        <form action="{% url "create_page" %}" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="ListingTitle" class="form-label">Name of Listing</label>
+                <input type="text" class="form-control" name="Title"id="ListingTitle" aria-describedby="ListingName" maxlength="254">
+            </div>
+
+            <div class="mb-3">
+                <label for="ListingDesc" class="form-label">Description:</label>
+                <textarea class="form-control" placeholder="Leave a description here" name="Desc" id="ListingDesc" maxlength="254"></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label for="ListingStartPrice" class="form-label">Starting Price</label>
+                <input type="number" class="form-control" name="Starting"id="ListingStartPrice">
+            </div>
+            
+            <div class="mb-3">
+                <label for="ListingImg" class="form-label">Image URL:</label>
+                <input type="text" class="form-control" name="ImgURL" id="ListingImg">
+            </div>
+
+            <div class="mb-3">
+                <label for="ListingCat" class="form-label">Category</label>
+                <input type="text" class="form-control" name="Category" id="ListingCat" maxlength="254">
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+
+
+
+{% endblock body %}

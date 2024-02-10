@@ -1,0 +1,33 @@
+{% extends "auctions/layout.html" %}
+{% block body %}
+{% load static %}
+
+
+<div class="container">
+    <div class="row text-center">
+        <div class="col">
+            red
+            {% if listing.image_url %}
+                <img src="{{ listing.image_url }}" alt="{{ lisitng.title }}" class="mt-5" style="max-width: 100%; height: auto;">
+            {% else %}
+               <img src="{% static 'auctions/imagenotfound.jpg' %}" alt="{{ listing.title }}" style="max-width: 100%; height: auto;"> 
+            {% endif %}
+        </div>
+        <div class="col">
+            green
+            <h2>{{ listing.title }}</h2>
+            <h4 class="mb-5">{{ listing.description }}</h4>
+            <h5 class="pt-5">${{ listing.current_price }}</h5>
+            {% if user == listing.winner %}
+                <h1>THE AUCTION WINNER WAS: {{ listing.winner }}</h1>
+            {% else %}
+                <h1>Auction Closed</h1>
+            {% endif %}
+            
+        </div>
+        <div class="col">
+            blue
+            Future comments section
+        </div>
+    </div>
+{% endblock %}

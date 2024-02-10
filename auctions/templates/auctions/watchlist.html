@@ -1,0 +1,29 @@
+{% extends "auctions/layout.html" %}
+
+{% block body %}
+{% load static %}
+    <h2>Watchlist</h2>
+
+
+    <div class="container">
+        <div class="row align-items-center">
+
+            {% for listing in watchlisted %}
+
+            <div class="col-md-3 gy-5 mb-5">
+                <div class="card" style="width: 14rem;">
+                    
+                    <img src="{{ listing.image_url|default:'/static/auctions/imagenotfound.jpg' }}" class="card-img-top" alt="{{ listing.title }}">
+                    
+                    <div class="card-body">
+                    <h5 class="card-title">{{ listing.title }}</h5>
+                    <h6>Current Bid: ${{ listing.current_price }}</h6>
+                    <p class="card-text">{{ listing.description }}</p>
+                    <a href="{% url 'listing_page' listing.id %}" class="btn btn-primary">Have a Look</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

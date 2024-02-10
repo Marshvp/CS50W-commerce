@@ -1,0 +1,50 @@
+{% extends "auctions/layout.html" %}
+{% block body %}
+{% load static %}
+
+
+<h2>Categories</h2>
+
+
+    <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        Dropdown button
+        </button>
+        <ul class="dropdown-menu">
+            <li><a class="dropdown-item" href="{% url 'category' %}">All Categories</a></li>
+            <li><hr class="dropdown-divider"></li>
+            {% for category in categories %}
+                <li><a class="dropdown-item" href="{% url 'category' category %}">{{ category }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+
+    <h3>Listings in {{ selected_category|default:"All Categories" }}</h3>
+
+    <div class="container">
+        <div class="row align-items-center">
+
+            {% for listing in listings %}
+
+            <div class="col-md-3 gy-5">
+                <div class="card" style="width: 14rem;">
+                    
+                    <img src="{{ listing.image_url|default:'/static/auctions/imagenotfound.jpg' }}" class="card-img-top" alt="{{ listing.title }}">
+                    
+                    <div class="card-body">
+                    <h5 class="card-title">{{ listing.title }}</h5>
+                    <h6>${{ listing.current_price }}</h6>
+                    <p class="card-text">{{ listing.description }}</p>
+                    <a href="{% url 'listing_page' listing.id %}" class="btn btn-primary">Have a Look</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+
+
+
+{% endblock %}
